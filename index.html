@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Falcı - Yapay Zeka ve Veri Bilimi Topluluğu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #2b1055 0%, #7597de 50%, #fbc531 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            padding: 15px;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 26px;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 1.45rem;
+            color: #590fb7;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        p.subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        .image-wrapper {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 25px rgba(89, 15, 183, 0.15);
+            border: 2px solid #ffb703;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .image-wrapper:hover {
+            transform: scale(1.02);
+        }
+        .mascot-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .btn {
+            background: linear-gradient(135deg, #7b2cbf 0%, #ff7b00 100%);
+            color: white;
+            border: none;
+            padding: 15px 24px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(123, 44, 191, 0.35);
+            width: 100%;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+        .btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 10px rgba(123, 44, 191, 0.3);
+        }
+        .btn-secondary {
+            background: #f1f2f6;
+            color: #57606f;
+            box-shadow: none;
+            margin-top: 12px;
+            border: 1px solid #dfe4ea;
+        }
+        .footer-note {
+            margin-top: 16px;
+            font-size: 0.75rem;
+            color: #718093;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .fortune-display-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff4e6 100%);
+            border: 2px dashed #ffb703;
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .fortune-text {
+            font-size: 1rem;
+            color: #2f3640;
+            font-weight: 600;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+        .sparkle {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- 1. SAYFA: Karşılama ve Giriş Ekranı -->
+        <div id="page1">
+            <h1>Geleceği Kodluyoruz! 🔮</h1>
+            <p class="subtitle">Sihirli küre falcı robotumuz seni bekliyor. Masamıza hoş geldin, bakalım küre bugün sana ne fısıldayacak?</p>
+            
+            <div class="image-wrapper" onclick="goToPage2()">
+                <img src="Gemini_Generated_Image_c3765c3765c3765c.png" alt="AI Maskot Falcı" class="mascot-img">
+            </div>
+
+            <button class="btn" onclick="goToPage2()">✨ Falımı Gör</button>
+            <div class="footer-note">Yapay Zeka ve Veri Bilimi Topluluğu 🚀</div>
+        </div>
+
+        <!-- 2. SAYFA: Falın Gösterildiği Ekran -->
+        <div id="page2" class="hidden">
+            <h1>Kürenin Sırrı Çözülüyor! 🌟</h1>
+            
+            <div class="fortune-display-box">
+                <div class="sparkle">✨</div>
+                <div id="fortuneText" class="fortune-text">Yükleniyor...</div>
+            </div>
+
+            <button class="btn" onclick="getAnotherFortune()">🔄 Başka Fal Çek</button>
+            <button class="btn btn-secondary" onclick="goToPage1()">⬅️ Ana Sayfaya Dön</button>
+            
+            <div class="footer-note">Yapay Zeka ve Veri Bilimi Topluluğu 🚀</div>
+        </div>
+
+    </div>
+
+    <script>
+        const fortunes = [
+            "Bugün yazdığın ilk kod tek seferde çalışacak, galakside bir ilk yaşanabilir! 🚀",
+            "Yakın zamanda modelin %99 doğruluk oranına ulaşacak ama overfitting'e dikkat et! 📈",
+            "Veri setindeki eksik değerler gibi hayatındaki boşlukları da harika dolduracaksın. 💡",
+            "Kahve fincanında bug görünmüyor ama terminaline dikkat et, sürpriz bir 'Hello World' yaklaşıyor! ☕",
+            "Yapay zekaya dünyayı nasıl ele geçireceğini sormaktan son anda vazgeçeceksin. Akıllıca hareket! 🤖",
+            "Gelecekteki büyük bir veri projenin ilhamı bugün yiyeceğin atıştırmalıktan gelecek. 🍕",
+            "Git commit mesajların o kadar akıcı olacak ki seni roman yazarı sanacaklar. 📜",
+            "TensorFlow ve PyTorch senin enerjini görünce kıskançlıktan çatlayacak. 🔥",
+            "Bugün şansına rastgele orman (Random Forest) çıktı; kararlarında kararsız kalma! 🌲",
+            "Modelin loss değeri azalırken senin neşen katlanarak artacak! 📉✨",
+            "Bu yıl “Gemini’ye bir şey sorayım” deyip 2 saat geçireceksin. (Probability: 98.2%) 🤖",
+            "Yakında bir Python hatası yüzünden hayatını sorgulayacaksın. (Probability: 87.4%) 💻",
+            "Bir gün kendi yapay zekâ projeni geliştireceksin. (Probability: 76.8%) 🚀",
+            "Veriye bakacaksın. Veri sana geri bakacak. (Probability: 100%) 👀",
+            "Bugün yeni bir topluluğa katılma ihtimalin oldukça yüksek. 👀 (Probability: 99.9%)",
+            "Kariyerinde “AI bilmek lazım galiba” dediğin bir an yaşayacaksın. (Probability: 91.3%) 📈",
+            "Bir gün “Ben bunu AI ile yaptırırım” diyeceksin. (Probability: 100%) ✨",
+            "Bugünkü model tahminine göre güzel bir sürpriz seni bekliyor. (Confidence: 92%) 🎉",
+            "Bugün yazdığın ilk kod tek seferde çalışacak, galakside bir ilk yaşanabilir! 🌌",
+            "Yakın zamanda modelin %99 doğruluk oranına ulaşacak ama overfitting'e dikkat et! 📊",
+            "Veri setindeki eksik değerler gibi hayatındaki boşlukları da harika dolduracaksın. 💡",
+            "Yapay zekaya dünyayı nasıl ele geçireceğini sormaktan son anda vazgeçeceksin. Akıllıca hareket! 🤖",
+            "Git commit mesajların o kadar akıcı olacak ki seni roman yazarı sanacaklar. 📜",
+            "TensorFlow ve PyTorch senin enerjini görünce kıskançlıktan çatlayacak. 🔥",
+            "Bugün en az 3 kere hapşıracaksın, içinden birisi kesin seni anıyor. 🤧",
+            "Yolda yürürken ayağın taşa takılmayacak ama kesinlikle boşlukta adım atma hissinden dolayı irkilceksin. 🚶‍♂️",
+            "Bugün telefonunu şarja takmayı unutup en kritik anda %1'de kalma gerilimini yaşayacaksın. 🪫",
+            "Canın durduk yere aşırı derecede çiğ köfte veya pizza çekecek. (Kesin bilgi) 🍕",
+            "Bugün sırtına yapışan o etiketli fiyat etiketini biri arkandan sökecek ve kahkaha atacaksınız. 🏷️",
+            "Toplu taşımada tam ineceğin durakta kapının önünü kapatan o kişiyle göz göze geleceksin. 👀",
+            "Bugün kafana taktığın bir şarkıyı bütün gün istemsizce mırıldanacaksın. 🎶",
+            "Markete gidip 'sadece 2 şey alıp çıkacağım' diyeceksin ama sepet dolu kasaya geleceksin. 🛒",
+            "Bugün birine 'iyi sen nasılsın' derken o sana 'iyi sen' diyecek, küçük bir sosyal kriz yaşanacak. 🤝",
+            "Bilgisayarın şarj kablosunu bulmak için evdeki koltuğun altına girme ihtimalin %95. 🛋️",
+            "Bugün çektiğin fotoğraflardan birinde gözün kapalı çıkacak ama yine de çok seveceksin. 📸",
+            "Yolda giderken esrarengiz bir şekilde yere düşen bozuk para göreceksin ama seninki olmayacak. 🪙",
+            "Bugün çay veya kahveni içerken kesinlikle dilini hafifçe yakacaksın, dikkat et! ☕",
+            "Gözlüklüysen gözlüğünü ararken gözlüğün burnunda olduğunu fark edeceğin bir an yaşanacak. 👓",
+            "Bugün biri sana çok saçma bir soru soracak ve cevabını sen de bilmeyeceksin. 🤷‍♂️",
+            "Telefonunu 'nereye koymuştum ya' deyip elinde aradığın o an bugün seni bekliyor. 📱",
+            "Bugün rüyanda muhtemelen ya uçacaksın ya da imtihana geç kalacaksın. Klasik! 🌙",
+            "Kıyafetini ters giyme ihtimalin var, evden çıkmadan önce son bir kez aynaya bak. 👕",
+            "Bugün masaya gelen insanlardan biri kesinlikle falına bakarken sesli gülecek. ✨",
+            "Şansına bugün bolca kahkaha ve masamızda geçen harika sohbetler çıktı! 🚀",
+            "Bugün modelin loss değeri düşecek ama senin kahve tüketimin artacak. (Confidence: 99.9%) ☕",
+            "Kodu çalıştırırken 'İnşallah çalışır' duası edeceksin ve mucizevi bir şekilde çalışacak. (Probability: 88.5%) 🙏",
+            "Günün birinde production ortamında hata yapacaksın ama kimse fark etmeyecek. (Probability: 94.1%) 🤫",
+            "Yapay zeka asistanına teşekkür ettiğin anların sayısı insanlara teşekkür ettiğin anları geçecek. (Probability: 99.4%) 🤖",
+            "Bugün GitHub'a atacağın commit, tüm kariyerinin dönüm noktası olacak... ya da sadece typo düzelteceksin. (Probability: 50/50) 💻",
+            "Bir veri setini temizlerken hayatın anlamını sorgulayacaksın. (Probability: 92.7%) 🧹",
+            "Topluluk etkinliklerinde yeni arkadaşlar edinip harika projelere imza atacaksın. (Probability: 100%) 🚀",
+            "Bugün yazdığın SQL sorgusu ilk seferde çalışırsa hemen bir loto bileti al. (Probability: 12.3%) 🎫",
+            "AI araçları seni işinden etmeyecek ama AI kullanan başka biri edebilir. Sıkı çalış! ⚡",
+            "Bugün staj veya iş başvurusundan 'Olumlu' maili alma ihtimalin tavan yapacak! 📈",
+            "Klasik bir 'Hello World' ile başlayıp günün sonunda devasa bir sistem mimarisi tasarlayacaksın. ✨",
+            "Kodu 'Sonra düzeltirim' diye bırakıp o kodu bir daha asla bulamayacaksın. (Probability: 99.8%) 🔍",
+            "Veri bilimi ve yapay zeka dünyasında adından söz ettireceğin günler çok yakın. 🌟",
+            "Bugün yapay zekaya yazdığın promptlar o kadar iyi olacak ki senden kopya çekmek isteyecekler. 🧠",
+            "StackOverflow'da tam aradığın hatanın çözümünü 2014'ten kalma bir forum sayfasında bulacaksın. (Probability: 96.5%) 🌐",
+            "Geleceğin en büyük teknoloji girişiminin temelleri bugün atılacak. 🎯",
+            "Bugün hocadan veya yöneticiden 'Aferin' alma olasılığın oldukça yüksek. Değerlendir! 🏆",
+            "Pandas kütüphanesiyle ufak bir veri analizi yapayım derken kendini 500 satırlık kodun içinde bulacaksın. 🐼",
+            "Bugün şansına Linear Regression çıktı; hayatın düz bir çizgi gibi tıkırında gidecek. 📉",
+            "Topluluk masamızdaki enerjiyi görünce tüm döneminin en motivasyon dolu günü geçecek. 🔥"
+];
+
+        function goToPage2() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+            generateNewFortune(); 
+        }
+
+        function goToPage1() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page1').classList.remove('hidden');
+        }
+
+        function generateNewFortune() {
+            const textElement = document.getElementById('fortuneText');
+            textElement.style.opacity = 0;
+            textElement.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * fortunes.length);
+                textElement.innerText = '"' + fortunes[randomIndex] + '"';
+                textElement.style.opacity = 1;
+                textElement.style.transform = 'translateY(0)';
+            }, 200);
+        }
+
+        function getAnotherFortune() {
+            generateNewFortune();
+        }
+    </script>
+</body>
+</html>
